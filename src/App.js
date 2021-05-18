@@ -1,12 +1,15 @@
 import {Container} from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 import { TournamentsGrid } from './components/Tournaments';
+import { FixtureGrid } from './components/Fixture';
+import { APP_ROUTES } from './config';
 
 function App() {
   return (
       <Container maxWidth='md' >
         <Switch>
-            <Route exact path='/' component={TournamentsGrid} />
+            <Route exact path={APP_ROUTES.HOME} component={TournamentsGrid} />
+            <Route path={`${APP_ROUTES.FIXTURE}/:id`} component={FixtureGrid} />
         </Switch>
       </Container>
   );

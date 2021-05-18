@@ -5,9 +5,10 @@ import { Grid, Avatar, Paper, Button, TextField } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 import { Typography, BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import axios from 'axios';
-import { URL, DEFAULT_VALUES } from '../../config';
+import { URL, DEFAULT_VALUES, APP_ROUTES } from '../../config';
 import { useDispatch } from "react-redux";
 import { showError } from '../../redux/actions'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +31,9 @@ export const TournamentsGrid = () => {
     const [items, setItems] = useState([]);
     const [openDialog, setOpenDialog] = React.useState(false);
     const dispatch = useDispatch();
+
+    const history = useHistory();
+
     const handleClickOpenDialog = () => {
         setError(false);
         setCant(DEFAULT_VALUES.TEAMS_CANT);
@@ -60,6 +64,11 @@ export const TournamentsGrid = () => {
         setName(event.target.value);
     };
 
+    const handleFixtureClick = (id) => {
+        history.push(`${APP_ROUTES.FIXTURE}/${id}`);
+    };
+
+
     const fetchData = () => {
         axios.get(URL.TOURNAMENT.LIST)
             .then(response => setList(response.data))
@@ -82,6 +91,9 @@ export const TournamentsGrid = () => {
                     <Grid item xs>
                         <Typography>{t.tournament_name}</Typography>
                     </Grid>
+                    <Grid item>
+                        <Button onClick={() => handleFixtureClick(t.id)}>Ver fixture</Button>
+                    </Grid>
                 </Grid>
             </Paper>
         )});
@@ -90,8 +102,11 @@ export const TournamentsGrid = () => {
 
     return (
         <>
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 400, width: '100%', marginTop: 40 }}>
                 <div className={classes.root}>
+                    <Typography variant="h5" component="h5" gutterBottom>
+                        Lista de torneos
+                    </Typography>
                     { items.length ? items : <Paper className={classes.paper}variant="outlined">
                         <Grid container wrap="nowrap" spacing={2}>
                             <Grid item xs>
