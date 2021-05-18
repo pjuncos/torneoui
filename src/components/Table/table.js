@@ -26,24 +26,36 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-export const RoundTable = props => {
+export const PositionsTable = props => {
     const { rows } = props;
     return (
         <TableContainer>
             <Table size={"small"}>
                 <TableHead>
                     <StyledTableRow>
-                        <StyledTableCell>Equipo 1</StyledTableCell>
-                        <StyledTableCell>Equipo 2</StyledTableCell>
-                        <StyledTableCell>Resultado</StyledTableCell>
+                        <StyledTableCell>Nombre</StyledTableCell>
+                        <StyledTableCell>Puntos</StyledTableCell>
+                        <StyledTableCell>Jugados</StyledTableCell>
+                        <StyledTableCell>Ganados</StyledTableCell>
+                        <StyledTableCell>Empatados</StyledTableCell>
+                        <StyledTableCell>Perdidos</StyledTableCell>
+                        <StyledTableCell>Goles a favor</StyledTableCell>
+                        <StyledTableCell>Goles en contra</StyledTableCell>
+                        <StyledTableCell>Diferencia</StyledTableCell>
                     </StyledTableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <StyledTableRow key={row.team1}>
-                            <TableCell>{row.team1}</TableCell>
-                            <TableCell>{row.team2}</TableCell>
-                            <TableCell>{row.result}</TableCell>
+                        <StyledTableRow key={row.team_id}>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.points}</TableCell>
+                            <TableCell>{row.played}</TableCell>
+                            <TableCell>{row.win}</TableCell>
+                            <TableCell>{row.draw}</TableCell>
+                            <TableCell>{row.lost}</TableCell>
+                            <TableCell>{row.scored}</TableCell>
+                            <TableCell>{row.conceded}</TableCell>
+                            <TableCell>{row.difference}</TableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
@@ -52,7 +64,7 @@ export const RoundTable = props => {
     );
 };
 
-RoundTable.propTypes = {
+PositionsTable.propTypes = {
     rows: PropTypes.array,
 
 }

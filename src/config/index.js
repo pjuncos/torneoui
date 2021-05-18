@@ -7,6 +7,9 @@ export const URL = {
     FIXTURE: {
         LIST: (id) => `${API_URL}/tournaments/${id}/fixture`
     },
+    TABLE: {
+        LIST: (id) => `${API_URL}/tournaments/${id}/table`
+    },
 }
 
 export const DEFAULT_VALUES = {
@@ -15,5 +18,6 @@ export const DEFAULT_VALUES = {
 
 export const APP_ROUTES = {
     HOME: '/',
-    FIXTURE: '/fixture'
+    FIXTURE: '/fixture',
+    TABLE: '/table'
 }
