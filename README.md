@@ -1,2 +1,4 @@
-# torneoui
-Torneo UI
+# Torneo UI
+
+Run application:
+* **npm start**
